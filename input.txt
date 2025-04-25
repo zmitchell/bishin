@@ -1,0 +1,11 @@
+@shells(bash,fish)
+@test installs_package {
+  "$FLOX_BIN" install ripgrep
+  assert_success
+}
+
+@test uninstalls_package {
+  flox uninstall ripgrep
+  assert_success
+}
+

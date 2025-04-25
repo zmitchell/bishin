@@ -1,0 +1,16 @@
+supported_shell = { "bash" | "zsh" | "tcsh" | "fish" }
+comma = _{ "," }
+shells = { supported_shell ~ (comma ~ supported_shell)* }
+shells_decorator = { "@shells(" ~  shells ~ ")" }
+
+test_name = { ASCII_ALPHA ~ ( ASCII_ALPHANUMERIC | "_" )* }
+test_header = { "@test " ~ test_name ~ " " }
+punctuation = { '!'..'@' | '['..'`' | '{'..'~' }
+shell_character = { ASCII_ALPHANUMERIC | " " | "\t" | punctuation }
+shell_line = { (shell_character)* ~ NEWLINE }
+test_body = { shell_line+ }
+test = { test_header ~ "{" ~ NEWLINE ~ test_body ~ "}" }
+
+test_with_decorators = { (shells_decorator ~ NEWLINE)? ~ test }
+
+test_file = { test_with_decorators ~ NEWLINE }
