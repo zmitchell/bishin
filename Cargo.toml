@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [
+  "bishin-parser"
+]
+default-members = [
+  "bishin-parser"
+]
+
+[workspace.dependencies]
+thiserror = "1"
+winnow = { version = "0.7" }

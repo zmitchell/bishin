@@ -3,6 +3,9 @@
   "manifest": {
     "version": 1,
     "install": {
+      "bacon": {
+        "pkg-path": "bacon"
+      },
       "cargo": {
         "pkg-path": "cargo"
       },
@@ -296,6 +299,122 @@
       },
       "system": "x86_64-linux",
       "group": "extra",
+      "priority": 5
+    },
+    {
+      "attr_path": "bacon",
+      "broken": false,
+      "derivation": "/nix/store/qskc8rynbs46bhv1q2lcah43rrkhcc2x-bacon-3.12.0.drv",
+      "description": "Background rust code checker",
+      "install_id": "bacon",
+      "license": "AGPL-3.0-only",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "name": "bacon-3.12.0",
+      "pname": "bacon",
+      "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "rev_count": 788136,
+      "rev_date": "2025-04-23T06:59:22Z",
+      "scrape_date": "2025-04-25T04:18:39.820587Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/xxydzq2pw7r0lsszg6i6hcgbkj06qsp7-bacon-3.12.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bacon",
+      "broken": false,
+      "derivation": "/nix/store/56hy1g7glxbg3syi5qd24548dhdmlidy-bacon-3.12.0.drv",
+      "description": "Background rust code checker",
+      "install_id": "bacon",
+      "license": "AGPL-3.0-only",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "name": "bacon-3.12.0",
+      "pname": "bacon",
+      "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "rev_count": 788136,
+      "rev_date": "2025-04-23T06:59:22Z",
+      "scrape_date": "2025-04-25T04:53:51.340732Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/psbj4g4lw2v400ry5dnswmx0aa37a14v-bacon-3.12.0"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bacon",
+      "broken": false,
+      "derivation": "/nix/store/6jcjxrdrp9n3sgs6fyhprhpgmpzfg4v4-bacon-3.12.0.drv",
+      "description": "Background rust code checker",
+      "install_id": "bacon",
+      "license": "AGPL-3.0-only",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "name": "bacon-3.12.0",
+      "pname": "bacon",
+      "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "rev_count": 788136,
+      "rev_date": "2025-04-23T06:59:22Z",
+      "scrape_date": "2025-04-25T04:36:29.408286Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/wjlvba21wjfz69200s2gvs5rr91rzf2z-bacon-3.12.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bacon",
+      "broken": false,
+      "derivation": "/nix/store/czpydcv8dnq8zrn1rmmh7dsvxk02fsfa-bacon-3.12.0.drv",
+      "description": "Background rust code checker",
+      "install_id": "bacon",
+      "license": "AGPL-3.0-only",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "name": "bacon-3.12.0",
+      "pname": "bacon",
+      "rev": "8a2f738d9d1f1d986b5a4cd2fd2061a7127237d7",
+      "rev_count": 788136,
+      "rev_date": "2025-04-23T06:59:22Z",
+      "scrape_date": "2025-04-25T05:16:19.527694Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/266av4b9sk87nw135a57jr0ya6k356s6-bacon-3.12.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
       "priority": 5
     },
     {

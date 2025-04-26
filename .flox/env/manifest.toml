@@ -20,6 +20,7 @@ libiconv = { pkg-path = "libiconv", systems = ["aarch64-darwin", "x86_64-darwin"
 # to match versions
 rust-analyzer = { pkg-path = "rust-analyzer", pkg-group = "extra" }
 cargo-nextest = { pkg-path = "cargo-nextest", pkg-group = "extra" }
+bacon.pkg-path = "bacon"
 
 [vars]
 BIN_NAME = "FOO"
