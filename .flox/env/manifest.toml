@@ -1,0 +1,38 @@
+version = 1
+
+[install]
+# Rust toolchain
+cargo = { pkg-path = "cargo" }
+rustc = { pkg-path = "rustc" }
+clippy = { pkg-path = "clippy" }
+rustfmt = { pkg-path = "rustfmt" }
+rust-lib-src = { pkg-path = "rustPlatform.rustLibSrc" }
+
+# Linkers
+clang = { pkg-path = "clang", systems = ["aarch64-darwin"] }
+gcc = { pkg-path = "gcc", systems = ["aarch64-linux", "x86_64-linux"] }
+
+# Platform-specific libraries
+libiconv = { pkg-path = "libiconv", systems = ["aarch64-darwin", "x86_64-darwin"] }
+
+# rust-analyzer goes in its own group because it's updated
+# on a different cadence from the compiler and doesn't need
+# to match versions
+rust-analyzer = { pkg-path = "rust-analyzer", pkg-group = "extra" }
+cargo-nextest = { pkg-path = "cargo-nextest", pkg-group = "extra" }
+
+[vars]
+BIN_NAME = "FOO"
+
+[hook]
+on-activate = '''
+  export PATH="$PWD/target/debug:$PATH"
+'''
+
+[profile]
+fish = '''
+ abbr install-bin "cargo b -r && cp target/release/$BIN_NAME ~/bin/$BIN_NAME"
+'''
+
+[options]
+systems = ["aarch64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
