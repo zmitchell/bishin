@@ -1,8 +1,8 @@
 #![allow(dead_code)]
 use winnow::{
     Result,
-    ascii::space0,
-    combinator::{alt, separated},
+    ascii::{line_ending, space0, till_line_ending},
+    combinator::{alt, preceded, repeat, separated, seq},
     prelude::*,
     stream::AsChar,
     token::take_while,
@@ -26,8 +26,22 @@ fn test_name<'a>(input: &mut &'a str) -> Result<&'a str> {
     take_while(1.., (AsChar::is_alphanum, '_')).parse_next(input)
 }
 
+fn test_header<'a>(input: &mut &'a str) -> Result<&'a str> {
+    preceded("@test ", test_name).parse_next(input)
+}
+
+fn line<'a>(input: &mut &'a str) -> Result<(&'a str, &'a str)> {
+    seq!(till_line_ending, line_ending).parse_next(input)
+}
+
+fn test_body<'a>(input: &mut &'a str) -> Result<Vec<(&'a str, &'a str)>> {
+    repeat(1.., line).parse_next(input)
+}
+
 #[cfg(test)]
 mod tests {
+    use indoc::formatdoc;
+
     use super::*;
 
     #[test]
@@ -52,5 +66,16 @@ mod tests {
             let parsed = test_name(name).unwrap();
             assert_eq!(parsed, name_copy.as_str());
         }
+    }
+
+    #[test]
+    fn parses_test_body() {
+        let input = formatdoc! {"
+            foo
+            bar
+            baz
+        "};
+        let parsed = test_body(&mut input.as_str()).unwrap();
+        assert_eq!(parsed, vec![("foo", "\n"), ("bar", "\n"), ("baz", "\n")]);
     }
 }
