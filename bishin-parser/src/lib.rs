@@ -2,11 +2,18 @@
 use winnow::{
     Result,
     ascii::{line_ending, space0, till_line_ending},
-    combinator::{alt, preceded, repeat, separated, seq},
+    combinator::{alt, preceded, repeat, separated, seq, terminated},
     prelude::*,
     stream::AsChar,
     token::take_while,
 };
+
+#[derive(Debug)]
+pub struct Test<'a> {
+    name: &'a str,
+    // (line, line_ending)
+    body: Vec<(&'a str, &'a str)>,
+}
 
 fn shell<'a>(input: &mut &'a str) -> Result<&'a str> {
     alt(("bash", "fish", "zsh", "tcsh")).parse_next(input)
@@ -31,11 +38,21 @@ fn test_header<'a>(input: &mut &'a str) -> Result<&'a str> {
 }
 
 fn line<'a>(input: &mut &'a str) -> Result<(&'a str, &'a str)> {
-    seq!(till_line_ending, line_ending).parse_next(input)
+    seq!(till_line_ending, line_ending)
+        .verify(|&(l, _): &(&str, &str)| !l.starts_with('}'))
+        .parse_next(input)
 }
 
 fn test_body<'a>(input: &mut &'a str) -> Result<Vec<(&'a str, &'a str)>> {
     repeat(1.., line).parse_next(input)
+}
+
+fn test<'a>(input: &mut &'a str) -> Result<Test<'a>> {
+    let name = test_header.parse_next(input)?;
+    let begin = (" {", line_ending);
+    let body_and_end = terminated(test_body, ("}", line_ending));
+    let body = preceded(begin, body_and_end).parse_next(input)?;
+    Ok(Test { name, body })
 }
 
 #[cfg(test)]
@@ -77,5 +94,18 @@ mod tests {
         "};
         let parsed = test_body(&mut input.as_str()).unwrap();
         assert_eq!(parsed, vec![("foo", "\n"), ("bar", "\n"), ("baz", "\n")]);
+    }
+
+    #[test]
+    fn parses_test() {
+        let input = formatdoc! {"
+           @test test_name {{
+               foo
+               bar
+           }}
+        "};
+        let parsed = test(&mut input.as_str()).unwrap();
+        assert_eq!(parsed.name, "test_name");
+        assert_eq!(parsed.body, vec![("    foo", "\n"), ("    bar", "\n")]);
     }
 }
