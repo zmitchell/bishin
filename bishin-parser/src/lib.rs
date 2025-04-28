@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 use winnow::{
     Result,
-    ascii::{line_ending, space0, till_line_ending},
+    ascii::{line_ending, multispace0, space0, till_line_ending},
     combinator::{alt, preceded, repeat, separated, seq, terminated},
     prelude::*,
     stream::AsChar,
@@ -53,6 +53,10 @@ fn test<'a>(input: &mut &'a str) -> Result<Test<'a>> {
     let body_and_end = terminated(test_body, ("}", line_ending));
     let body = preceded(begin, body_and_end).parse_next(input)?;
     Ok(Test { name, body })
+}
+
+fn test_file<'a>(input: &mut &'a str) -> Result<Vec<Test<'a>>> {
+    preceded(multispace0, repeat(0.., terminated(test, multispace0))).parse_next(input)
 }
 
 #[cfg(test)]
@@ -107,5 +111,25 @@ mod tests {
         let parsed = test(&mut input.as_str()).unwrap();
         assert_eq!(parsed.name, "test_name");
         assert_eq!(parsed.body, vec![("    foo", "\n"), ("    bar", "\n")]);
+    }
+
+    #[test]
+    fn parses_test_file() {
+        let input = formatdoc! {"
+
+        
+           @test test1 {{
+               foo
+           }}
+
+           @test test2 {{
+               bar
+           }}
+           @test test3 {{
+               baz
+           }}
+        "};
+        let parsed = test_file(&mut input.as_str()).unwrap();
+        assert_eq!(parsed.len(), 3);
     }
 }
