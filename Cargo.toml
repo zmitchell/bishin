@@ -1,13 +1,17 @@
 [workspace]
 resolver = "2"
 members = [
+  "bishin-cli",
   "bishin-parser"
 ]
 default-members = [
+  "bishin-cli",
   "bishin-parser"
 ]
 
 [workspace.dependencies]
+anyhow = "1"
+clap = { version = "4.5.38", features = ["derive"] }
 indoc = "2.0"
 thiserror = "1"
 # winnow = { version = "0.7", features = ["debug"] }
