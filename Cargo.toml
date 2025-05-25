@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-  "bishin-cli",
+  "bishin-cli", "bishin-config",
   "bishin-parser"
 ]
 default-members = [
@@ -11,8 +11,13 @@ default-members = [
 
 [workspace.dependencies]
 anyhow = "1"
+bishin-config = { path = "bishin-config" }
 clap = { version = "4.5.38", features = ["derive"] }
+env_logger = { version = "0.11.8", features = ["kv"] }
 indoc = "2.0"
+log = { version = "0.4.27", features = ["kv"] }
+serde = { version = "1.0.219", features = ["derive"] }
 thiserror = "1"
+toml = "0.8.22"
 # winnow = { version = "0.7", features = ["debug"] }
 winnow = { version = "0.7" }

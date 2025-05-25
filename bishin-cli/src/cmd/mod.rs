@@ -1,5 +1,6 @@
+use anyhow::Error;
 use clap::{Parser, Subcommand};
-use run::RunArgs;
+use run::{RunArgs, run};
 
 pub mod run;
 
@@ -13,4 +14,13 @@ pub struct Cli {
 pub enum Cmd {
     #[command(about = "Run the tests")]
     Run(RunArgs),
+}
+
+pub fn handle_args(args: &Cli) -> Result<(), Error> {
+    match args.cmd {
+        Cmd::Run(ref run_args) => {
+            run(run_args)?;
+        }
+    }
+    Ok(())
 }

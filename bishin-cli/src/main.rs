@@ -1,9 +1,11 @@
+use anyhow::Error;
 use clap::Parser;
-use cmd::Cli;
+use cmd::{Cli, handle_args};
 
 mod cmd;
 
-fn main() {
-    let _args = Cli::parse();
-    println!("Hello, world!");
+fn main() -> Result<(), Error> {
+    let args = Cli::parse();
+    handle_args(&args)?;
+    Ok(())
 }
