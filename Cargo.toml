@@ -1,11 +1,15 @@
 [workspace]
 resolver = "2"
 members = [
-  "bishin-cli", "bishin-config",
+  "bishin-cli",
+  "bishin-collect",
+  "bishin-config",
   "bishin-parser"
 ]
 default-members = [
   "bishin-cli",
+  "bishin-collect",
+  "bishin-config",
   "bishin-parser"
 ]
 
@@ -14,10 +18,14 @@ anyhow = "1"
 bishin-config = { path = "bishin-config" }
 clap = { version = "4.5.38", features = ["derive"] }
 env_logger = { version = "0.11.8", features = ["kv"] }
+expect-test = "1.5.1"
 indoc = "2.0"
 log = { version = "0.4.27", features = ["kv"] }
+petgraph = "0.8.1"
 serde = { version = "1.0.219", features = ["derive"] }
 thiserror = "1"
+tempfile = "3.20.0"
 toml = "0.8.22"
+walkdir = "2.5.0"
 # winnow = { version = "0.7", features = ["debug"] }
 winnow = { version = "0.7" }
