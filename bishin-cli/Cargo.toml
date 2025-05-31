@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 anyhow.workspace = true
-bishin-config.workspace = true
+bishin-config = { path = "../bishin-config" }
 clap.workspace = true

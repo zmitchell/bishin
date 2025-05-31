@@ -7,3 +7,6 @@ edition = "2024"
 indoc.workspace = true
 thiserror.workspace = true
 winnow.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

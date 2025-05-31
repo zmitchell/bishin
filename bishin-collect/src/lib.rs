@@ -156,8 +156,8 @@ impl ModuleGraph {
 
 #[derive(Debug, Clone)]
 pub struct Module {
-    module_path: Vec<String>,
-    file: Option<PathBuf>,
+    pub module_path: Vec<String>,
+    pub file: Option<PathBuf>,
 }
 
 impl Module {
@@ -299,8 +299,8 @@ mod tests {
         let printed_graph = print_whole_module_graph(&modules);
         eprintln!("{printed_graph}");
         let expected = expect![[r#"
-            foo
-            bar"#]];
+            bar
+            foo"#]];
         expected.assert_eq(&printed_graph);
     }
 

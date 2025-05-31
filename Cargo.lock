@@ -96,10 +96,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "bishin-generate"
+version = "0.1.0"
+dependencies = [
+ "bishin-collect",
+ "bishin-jobs",
+ "bishin-parser",
+ "indoc",
+ "tempfile",
+ "thiserror",
+]
+
+[[package]]
+name = "bishin-jobs"
+version = "0.1.0"
+
+[[package]]
 name = "bishin-parser"
 version = "0.1.0"
 dependencies = [
  "indoc",
+ "tempfile",
  "thiserror",
  "winnow",
 ]

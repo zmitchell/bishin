@@ -1,0 +1,14 @@
+[package]
+name = "bishin-generate"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bishin-collect = { path = "../bishin-collect" }
+bishin-parser = { path = "../bishin-parser" }
+bishin-jobs = { path = "../bishin-jobs" }
+indoc.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
